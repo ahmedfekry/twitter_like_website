@@ -1,82 +1,186 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Twitter Like Website</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Laravel</title>
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+        <!--base css styles-->
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+        <!--page specific css styles-->
 
-    <style>
-        body {
-            font-family: 'Lato';
-        }
+        <!--flaty css styles-->
+        <link rel="stylesheet" href="css/flaty.css">
+        <link rel="stylesheet" href="css/flaty-responsive.css">
 
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
-</head>
-<body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
+        <link rel="shortcut icon" href="img/favicon.png">
+    </head>
+    <body>
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+        <!-- BEGIN Navbar -->
+        <div id="navbar" class="navbar">
+            <button type="button" class="navbar-toggle navbar-btn collapsed" data-toggle="collapse" data-target="#sidebar">
+                <span class="fa fa-bars"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <small>
+                    <i class="fa fa-desktop"></i>
+                    Twitter Like Website
+                </small>
+            </a>
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
-                </a>
-            </div>
+            <!-- BEGIN Navbar Buttons -->
+            <ul class="nav flaty-nav pull-right">
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
+                <!-- BEGIN Button User -->
+                <li class="user-profile">
+                    <a data-toggle="dropdown" href="#" class="user-menu dropdown-toggle">
+                        <img class="nav-user-photo" src="img/demo/avatar/avatar.jpg" alt="Penny's Photo" />
+                        <span class="hhh" id="user_info">
+                            {{Auth::user()->name}}
+                        </span>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
 
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
+                    <!-- BEGIN User Dropdown -->
+                    <ul class="dropdown-menu dropdown-navbar" id="user_menu">
+                        <li class="nav-header">
+                            <i class="fa fa-clock-o"></i>
+                            Logined From 20:45
                         </li>
-                    @endif
-                </ul>
-            </div>
+
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-user"></i>
+                                Edit Profile
+                            </a>
+                        </li>
+
+                        <li class="divider visible-xs"></li>
+
+                        <li>
+                            <a href="{{url('logout')}}">
+                                <i class="fa fa-off"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- BEGIN User Dropdown -->
+                </li>
+                <!-- END Button User -->
+            </ul>
+            <!-- END Navbar Buttons -->
         </div>
-    </nav>
+        <!-- END Navbar -->
 
-    @yield('content')
+        <!-- BEGIN Container -->
+        <div class="container" id="main-container">
+            <!-- BEGIN Sidebar -->
+            <div id="sidebar" class="navbar-collapse collapse">
+                <!-- BEGIN Navlist -->
+                <ul class="nav nav-list">
+                    <!-- BEGIN Search Form -->
+                    <li>
+                        <form target="#" method="GET" class="search-form">
+                            <span class="search-pan">
+                                <button type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                                <input type="text" name="search" placeholder="Search ..." autocomplete="off" />
+                            </span>
+                        </form>
+                    </li>
+                    <!-- END Search Form -->
 
-    <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-</body>
+                   <!--  <li class="active">
+                        <a href="index.html">
+                            <i class="fa fa-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li> -->
+
+                   
+                   
+                   <!--  <li>
+                        <a href="#" class="dropdown-toggle">
+                            <i class="fa fa-globe"></i>
+                            <span>Maps</span>
+                            <b class="arrow fa fa-angle-right"></b>
+                        </a>
+
+                        <ul class="submenu">
+                            <li><a href="map_google.html">Google Maps</a></li>
+                            <li><a href="map_vector.html">Vector Maps</a></li>
+                        </ul>
+                    </li> -->
+
+                </ul>
+                <!-- END Navlist -->
+
+                <!-- BEGIN Sidebar Collapse Button -->
+                <div id="sidebar-collapse" class="visible-lg">
+                    <i class="fa fa-angle-double-left"></i>
+                </div>
+                <!-- END Sidebar Collapse Button -->
+            </div>
+            <!-- END Sidebar -->
+
+            <!-- BEGIN Content -->
+            <div id="main-content">
+                <!-- BEGIN Page Title -->
+                <div class="page-title">
+                    <div>
+                        <h1><i class="fa fa-file-o"></i> Dashboard</h1>
+                        <h4>Overview, stats, chat and more</h4>
+                    </div>
+                </div>
+                <!-- END Page Title -->
+
+                <!-- BEGIN Breadcrumb -->
+                <div id="breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li class="active"><i class="fa fa-home"></i> Home</li>
+                    </ul>
+                </div>
+                <!-- END Breadcrumb -->
+
+                
+                <footer>
+                    <p>Twitter Like Website</p>
+                </footer>
+
+                <a id="btn-scrollup" class="btn btn-circle btn-lg" href="#"><i class="fa fa-chevron-up"></i></a>
+            </div>
+            <!-- END Content -->
+        </div>
+        <!-- END Container -->
+
+
+        <!--basic scripts-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="assets/jquery/jquery-2.1.4.min.js"><\/script>')</script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="assets/jquery-cookie/jquery.cookie.js"></script>
+
+        <!--page specific plugin scripts-->
+        <script src="assets/flot/jquery.flot.js"></script>
+        <script src="assets/flot/jquery.flot.resize.js"></script>
+        <script src="assets/flot/jquery.flot.pie.js"></script>
+        <script src="assets/flot/jquery.flot.stack.js"></script>
+        <script src="assets/flot/jquery.flot.crosshair.js"></script>
+        <script src="assets/flot/jquery.flot.tooltip.min.js"></script>
+        <script src="assets/sparkline/jquery.sparkline.min.js"></script>
+
+        <!--flaty scripts-->
+        <script src="js/flaty.js"></script>
+        <script src="js/flaty-demo-codes.js"></script>
+
+    </body>
 </html>
