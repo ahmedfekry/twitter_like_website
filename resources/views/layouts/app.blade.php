@@ -10,16 +10,16 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!--base css styles-->
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{url("assets/bootstrap/css/bootstrap.min.css")}}">
+        <link rel="stylesheet" href="{{url("assets/font-awesome/css/font-awesome.min.css")}}">
 
         <!--page specific css styles-->
 
         <!--flaty css styles-->
-        <link rel="stylesheet" href="css/flaty.css">
-        <link rel="stylesheet" href="css/flaty-responsive.css">
+        <link rel="stylesheet" href="{{url("css/flaty.css")}}">
+        <link rel="stylesheet" href="{{url("css/flaty-responsive.css")}}">
 
-        <link rel="shortcut icon" href="img/favicon.png">
+        <link rel="shortcut icon" href="{{url("img/favicon.png")}}">
     </head>
     <body>
 
@@ -41,7 +41,7 @@
                 <!-- BEGIN Button User -->
                 <li class="user-profile">
                     <a data-toggle="dropdown" href="#" class="user-menu dropdown-toggle">
-                        <img class="nav-user-photo" src="img/demo/avatar/avatar.jpg" alt="Penny's Photo" />
+                        {{-- <img class="nav-user-photo" src="img/demo/avatar/avatar.jpg" alt="Penny's Photo" /> --}}
                         <span class="hhh" id="user_info">
                             {{Auth::user()->name}}
                         </span>
@@ -136,8 +136,8 @@
                 <!-- BEGIN Page Title -->
                 <div class="page-title">
                     <div>
-                        <h1><i class="fa fa-file-o"></i> Dashboard</h1>
-                        <h4>Overview, stats, chat and more</h4>
+                        <h1><i class="fa fa-file-o"></i> Timeline</h1>
+                        <h4>Tweets</h4>
                     </div>
                 </div>
                 <!-- END Page Title -->
@@ -148,9 +148,9 @@
                         <li class="active"><i class="fa fa-home"></i> Home</li>
                     </ul>
                 </div>
-                <!-- END Breadcrumb -->
-
                 
+                @yield('content')
+
                 <footer>
                     <p>Twitter Like Website</p>
                 </footer>
@@ -165,22 +165,24 @@
         <!--basic scripts-->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="assets/jquery/jquery-2.1.4.min.js"><\/script>')</script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-        <script src="assets/jquery-cookie/jquery.cookie.js"></script>
+        <script src="{{url("assets/bootstrap/js/bootstrap.min.js")}}"></script>
+        <script src="{{url("assets/jquery-slimscroll/jquery.slimscroll.min.js")}}"></script>
+        <script src="{{url("assets/jquery-cookie/jquery.cookie.js")}}"></script>
 
         <!--page specific plugin scripts-->
-        <script src="assets/flot/jquery.flot.js"></script>
-        <script src="assets/flot/jquery.flot.resize.js"></script>
-        <script src="assets/flot/jquery.flot.pie.js"></script>
-        <script src="assets/flot/jquery.flot.stack.js"></script>
-        <script src="assets/flot/jquery.flot.crosshair.js"></script>
-        <script src="assets/flot/jquery.flot.tooltip.min.js"></script>
-        <script src="assets/sparkline/jquery.sparkline.min.js"></script>
+        <script src="{{url("assets/flot/jquery.flot.js")}}"></script>
+        <script src="{{url("assets/flot/jquery.flot.resize.js")}}"></script>
+        <script src="{{url("assets/flot/jquery.flot.pie.js")}}"></script>
+        <script src="{{url("assets/flot/jquery.flot.stack.js")}}"></script>
+        <script src="{{url("assets/flot/jquery.flot.crosshair.js")}}"></script>
+        <script src="{{url("assets/flot/jquery.flot.tooltip.min.js")}}"></script>
+        <script src="{{url("assets/sparkline/jquery.sparkline.min.js")}}"></script>
 
         <!--flaty scripts-->
-        <script src="js/flaty.js"></script>
-        <script src="js/flaty-demo-codes.js"></script>
+        <script src="{{url("js/flaty.js")}}"></script>
+        <script src="{{url("js/flaty-demo-codes.js")}}"></script>
+
+        <script src="{{url("js/tweet.js")}}"></script>
 
     </body>
 </html>
