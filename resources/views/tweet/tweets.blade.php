@@ -14,7 +14,7 @@
                               <div class="user-block" style="margin-bottom: 2%;">
                                 <img class="img-circle img-bordered-sm" src="img/demo/80x80.gif" alt="user image">
                                     <span class="username">
-                                      <a href="{{url('')}}">{{$tweet->user->username}}</a>
+                                      <a href="{{url('/'.$tweet->user->username)}}">{{$tweet->user->username}}</a>
                                       @if(Auth::user()->id == $tweet->user_id)
                                         <a href="{{url('tweet/'.$tweet->id.'/delete')}}" onclick="return confirm('Are you sure?')" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                                       @endif
