@@ -28,4 +28,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Tweet');
     }
+
+    public function following()
+    {
+        return $this->hasMany('App\Follower');
+    }
+
+    public function followers()
+    {
+        return $this->hasMany('App\Follower','follower_id');
+    }
 }

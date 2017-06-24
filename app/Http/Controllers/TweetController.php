@@ -8,12 +8,27 @@ use App\Http\Requests;
 use Validator;
 use App\Tweet;
 use Auth;
+use App\User;
 
 class TweetController extends Controller
 {
 	public function index()
 	{
 		$tweets = Auth::user()->tweets;
+        $users = Auth::user()->following;
+        // return $users;
+        if ($users) {
+            foreach ($users as $user_) {
+                $user = User::findOrfail($user_->follower_id);
+                if ($user->tweets) {
+                    // return $user->tweets;
+                    foreach ($user->tweets as $tweet) {
+                        $tweets->push($tweet);
+                    }
+                }
+            }
+        }
+        $tweets = $tweets->sortByDesc('created_at');
 		return view('tweet.timeline',compact('tweets'));
 	}
 
@@ -31,5 +46,12 @@ class TweetController extends Controller
     	$tweet->save();
 
     	return array('status' => 200, 'text' => $tweet->text,'user_id' => Auth::user()->id,'username' => Auth::user()->username);
+    }
+
+    public function destroy($id)
+    {
+    	$tweet = Tweet::findOrfail($id);
+    	$tweet->delete();
+    	return back();
     }
 }

@@ -18,6 +18,7 @@
         <!--flaty css styles-->
         <link rel="stylesheet" href="{{url("css/flaty.css")}}">
         <link rel="stylesheet" href="{{url("css/flaty-responsive.css")}}">
+        <link rel="stylesheet" href="https://adminlte.io/themes/AdminLTE/dist/css/AdminLTE.min.css">
 
         <link rel="shortcut icon" href="{{url("img/favicon.png")}}">
     </head>
@@ -28,7 +29,7 @@
             <button type="button" class="navbar-toggle navbar-btn collapsed" data-toggle="collapse" data-target="#sidebar">
                 <span class="fa fa-bars"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{url('/')}}">
                 <small>
                     <i class="fa fa-desktop"></i>
                     Twitter Like Website
@@ -92,12 +93,14 @@
                                 <button type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
-                                <input type="text" name="search" placeholder="Search ..." autocomplete="off" />
+                                <input type="text" name="search" id="search-input" placeholder="Search ..." autocomplete="off" />
                             </span>
                         </form>
                     </li>
                     <!-- END Search Form -->
-
+                    <div class="list-group" style="padding: 0px 5px 0px 5px;" id="searchGroup">
+                     
+                    </div>
                    <!--  <li class="active">
                         <a href="index.html">
                             <i class="fa fa-dashboard"></i>
@@ -181,7 +184,9 @@
         <!--flaty scripts-->
         <script src="{{url("js/flaty.js")}}"></script>
         <script src="{{url("js/flaty-demo-codes.js")}}"></script>
-
+        <script>
+            baseUrl = "{{url('')}}";
+        </script>
         <script src="{{url("js/tweet.js")}}"></script>
 
     </body>

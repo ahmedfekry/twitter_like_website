@@ -16,4 +16,15 @@ Route::auth();
 Route::group(['middleware' => 'auth'], function() {
 	Route::get('/', 'TweetController@index');
 	Route::post('tweet', 'TweetController@save');
+	Route::get('tweet/{id}/delete', 'TweetController@destroy');
+});
+
+Route::group(['middleware' => 'auth'],function(){
+	Route::get('userSearch/{username}', 'UserController@searchUser');
+});
+
+
+Route::group(['middleware' => 'auth'],function(){
+	Route::get('/{username}', 'UserController@viewUser');
+	Route::get('/follow/{id}', 'UserController@follow');
 });

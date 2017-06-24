@@ -31,4 +31,25 @@ jQuery(document).ready(function($) {
 		});
 		
 	});
+
+  $('#search-input').keyup(function(event) {
+    // alert(baseUrl);
+    var url = baseUrl+'/userSearch/'+$(this).val();
+    if ($(this).val() != "") {
+      $.ajax({
+        url: url,
+        type: 'GET',
+        success: function (data) {
+          // console.log(data);
+          $('#searchGroup').empty();
+          for (var i = 0; i < data.length; i++) {
+            $('#searchGroup').append('\
+                <a href="'+baseUrl+'/'+data[i].username+'" class="list-group-item list-group-item-action ">\
+                    <h6 class="list-group-item-heading">'+data[i].username+'</h6>\
+                </a>');
+          }
+        }
+      }); 
+    }
+  });
 });
