@@ -17,6 +17,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/', 'TweetController@index');
 	Route::post('tweet', 'TweetController@save');
 	Route::get('tweet/{id}/delete', 'TweetController@destroy');
+	Route::get('tweet/{id}/like', 'TweetController@like');
 });
 
 Route::group(['middleware' => 'auth'],function(){

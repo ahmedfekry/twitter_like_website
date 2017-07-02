@@ -9,6 +9,7 @@ use Validator;
 use App\Tweet;
 use Auth;
 use App\User;
+use App\Like;
 
 class TweetController extends Controller
 {
@@ -45,7 +46,7 @@ class TweetController extends Controller
     	$tweet->user_id = Auth::user()->id;
     	$tweet->save();
 
-    	return array('status' => 200, 'text' => $tweet->text,'user_id' => Auth::user()->id,'username' => Auth::user()->username);
+    	return array('status' => 200, 'text' => $tweet->text,'user_id' => Auth::user()->id,'username' => Auth::user()->username,'id' => $tweet->id);
     }
 
     public function destroy($id)
@@ -53,5 +54,19 @@ class TweetController extends Controller
     	$tweet = Tweet::findOrfail($id);
     	$tweet->delete();
     	return back();
+    }
+
+    public function like($id)
+    {
+        $tweet = Tweet::FindOrfail($id);
+        $like = Like::where([['user_id',Auth::user()->id],['tweet_id',$tweet->id]])->first();
+        if ($like) {
+            return false;
+        }
+        $like = new Like();
+        $like->user_id = Auth::user()->id;
+        $like->tweet_id = $tweet->id;
+        $like->save();
+        return array('status' => 200,'count' => count($tweet->likes));
     }
 }

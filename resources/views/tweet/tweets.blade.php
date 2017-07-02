@@ -23,10 +23,10 @@
                               <!-- /.user-block -->
                               <p style="margin-left: 2%;">{{$tweet->text}}</p>
                               <ul class="list-inline">
-                                <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                                <li><a href="#" class="likeTweet" class="link-black text-sm"><i id="{{$tweet->id}}" class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
                                 </li>
                                 <li class="pull-right">
-                                  <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> likes(5)</a>
+                                  <a href="#" id="likes_{{$tweet->id}}" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> likes({{count($tweet->likes)}})</a>
                                 </li>
                               </ul>
                             </div>

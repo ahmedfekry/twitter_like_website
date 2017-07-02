@@ -19,10 +19,10 @@ jQuery(document).ready(function($) {
                               <!-- /.user-block -->\
                               <p style="margin-left: 2%;">'+data.text+'</p>\
                               <ul class="list-inline">\
-                                <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>\
+                                <li><a href="#" class="likeTweet" class="link-black text-sm"><i id="'+data.id+'" class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>\
                                 </li>\
                                 <li class="pull-right">\
-                                  <a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> likes(5)</a>\
+                                  <a href="#" id="likes_'+data.id+'" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> likes(0)</a>\
                                 </li>\
                               </ul>\
                             </div>\
@@ -52,4 +52,20 @@ jQuery(document).ready(function($) {
       }); 
     }
   });
+});
+
+$('.likeTweet').click(function(event) {
+  var id = $(this).children().attr('id');
+  $.ajax({
+    url: baseUrl+"/tweet/"+id+"/like",
+    type: 'GET',
+    success: function (data) {
+      if (data && data.status == 200) {
+        $('#likes_'+id).html('<i class="fa fa-thumbs-o-up margin-r-5"></i> likes('+data.count+')')
+
+        // console.log($(this).parent('li'))
+      }
+    }
+  });
+  
 });
