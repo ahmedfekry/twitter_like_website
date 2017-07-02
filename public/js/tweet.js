@@ -62,8 +62,8 @@ $('.likeTweet').click(function(event) {
     success: function (data) {
       if (data && data.status == 200) {
         $('#likes_'+id).html('<i class="fa fa-thumbs-o-up margin-r-5"></i> likes('+data.count+')')
-
-        // console.log($(this).parent('li'))
+        $('#likes_'+id).parent('li').prev('li').find('a').remove();
+        $('#likes_'+id).parent('li').parent('ul').append('<li>Liked</li>')
       }
     }
   });
